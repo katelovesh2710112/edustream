@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;600;700&display=swap');
+
+:root {
+  --bg-color: #05070a;
+  --panel-bg: rgba(13, 17, 23, 0.7);
+  --panel-border: rgba(102, 252, 241, 0.15);
+  --cyan-accent: #66fcf1;
+  --cyan-hover: #45a29e;
+  --gold-accent: #c5a059;
+  --purple-glow: rgba(139, 92, 246, 0.3);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --gradient-panel: linear-gradient(135deg, rgba(20, 24, 33, 0.8) 0%, rgba(10, 12, 16, 0.9) 100%);
+  --gradient-glow: linear-gradient(90deg, #66fcf1, #c5a059, #8b5cf6, #66fcf1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(102, 252, 241, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 45%);
+}
+
+h1, h2, h3, h4, .brand-font {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Base Glassmorphic Layouts */
+.glass-panel {
+  background: var(--gradient-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(102, 252, 241, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(102, 252, 241, 0.08);
+}
+
+.neon-btn {
+  background: transparent;
+  color: var(--cyan-accent);
+  border: 1px solid var(--cyan-accent);
+  padding: 10px 24px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 10px rgba(102, 252, 241, 0.1);
+}
+
+.neon-btn:hover:not(:disabled) {
+  background: var(--cyan-accent);
+  color: #05070a;
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+.neon-btn:active {
+  transform: translateY(0);
+}
+
+.neon-btn:disabled {
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.solid-btn {
+  background: var(--cyan-accent);
+  color: #05070a;
+  border: none;
+  padding: 12px 28px;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(102, 252, 241, 0.3);
+}
+
+.solid-btn:hover:not(:disabled) {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.solid-btn:disabled {
+  background: #374151;
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.2);
+    border-color: rgba(102, 252, 241, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(102, 252, 241, 0.5);
+    border-color: rgba(102, 252, 241, 0.6);
+  }
+}
+
+.streaming-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+  border-color: var(--cyan-accent);
+}
+
+@keyframes textGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.grad-text {
+  background: var(--gradient-glow);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradient 6s ease infinite;
+}
+
+/* Custom Video Player Wrapper */
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.video-element {
+  width: 100%;
+  display: block;
+}
+
+.stream-overlay {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(5, 7, 10, 0.85);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(102, 252, 241, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  z-index: 10;
+}
+
+.stream-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--cyan-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan-accent);
+}
+
+.stream-dot.active {
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* Metric Display Cards */
+.metric-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.badge-stream {
+  background: rgba(102, 252, 241, 0.1);
+  color: var(--cyan-accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(102, 252, 241, 0.2);
+}
+
+/* Quiz UI Custom styles */
+.quiz-option {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quiz-option:hover {
+  background: rgba(102, 252, 241, 0.05);
+  border-color: rgba(102, 252, 241, 0.25);
+}
+
+.quiz-option.selected {
+  background: rgba(102, 252, 241, 0.15);
+  border-color: var(--cyan-accent);
+  box-shadow: 0 0 10px rgba(102, 252, 241, 0.1);
+}
+
+.option-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.quiz-option.selected .option-letter {
+  background: var(--cyan-accent);
+  color: #05070a;
+}
+
+/* ================= CUSTOM SVG GLOW & MICROPULSATIONS ================= */
+.svg-icon-hover:hover {
+  transform: scale(1.18) translateY(-2px);
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.svg-glow-cyan {
+  filter: drop-shadow(0 0 4px rgba(102, 252, 241, 0.4));
+}
+
+.svg-glow-gold {
+  filter: drop-shadow(0 0 4px rgba(197, 160, 89, 0.4));
+}
+
+@keyframes floatSlow {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.floating-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+@keyframes glowShift {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1) translate(0px, 0px);
+  }
+  33% {
+    opacity: 0.22;
+    transform: scale(1.1) translate(15px, -15px);
+  }
+  66% {
+    opacity: 0.18;
+    transform: scale(0.95) translate(-15px, 10px);
+  }
+}
+
+/* Background animated decorative blobs for premium cinematic depths */
+.deco-blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+  animation: glowShift 12s infinite ease-in-out;
+}
+
+.deco-blob-cyan {
+  background: radial-gradient(circle, rgba(102, 252, 241, 0.12) 0%, transparent 70%);
+  top: 15%;
+  left: 5%;
+}
+
+.deco-blob-gold {
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+  bottom: 15%;
+  right: 5%;
+  animation-delay: -4s;
+}
+
+/* Skeleton Loading Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-premium {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.02) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 8px;
+}
+
+/* Magnetic border shine / conic shine overlay effects */
+.glass-panel-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel-glow::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(102, 252, 241, 0.1), transparent 40%);
+  animation: rotateConic 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotateConic {
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "edustream",
+  "version": "1.0.0",
+  "description": "EduStream - Pay-As-You-Learn Micro-Education Platform on Arc",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run scripts/deploy.js --network arcTestnet",
+    "server": "node server/index.js"
+  },
+  "dependencies": {
+    "@circle-fin/developer-controlled-wallets": "^10.3.1",
+    "@openzeppelin/contracts": "^5.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.16.0",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.4"
+  }
+}

@@ -1,0 +1,31 @@
+# Secrets
+.env
+.env.local
+.env.production
+.env.development
+.agents/
+.agents
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Hardhat build artifacts
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Production build output
+dist/
+out/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
